@@ -1,40 +1,31 @@
-# A simple MERN stack application 
+# 🚀 MERN Stack Application with Docker Compose
 
-### Create a network for the docker containers
+A complete **MERN Stack (MongoDB, Express.js, React.js, Node.js)** application containerized using **Docker** and orchestrated with **Docker Compose**.
 
-`docker network create demo`
+This project demonstrates how to take a multi-container MERN application and run the entire application stack using a single `docker-compose.yaml` file.
 
-### Build the client 
+---
 
-```sh
-cd mern/frontend
-docker build -t mern-frontend .
+## 📌 Project Overview
+
+The MERN stack consists of four major technologies:
+
+* **MongoDB** → Database
+* **Express.js** → Backend web framework
+* **React.js** → Frontend UI
+* **Node.js** → Backend JavaScript runtime
+
+In this project, the application is divided into multiple Docker containers:
+
+```text
+                    ┌──────────────────────┐
+                    │      User / Browser  │
+                    └──────────┬───────────┘
+                               │
+                               │ HTTP :5173
+                               ▼
+                    ┌──────────────────────┐
+                    │   React Frontend     │
+                    │      Container       │
+                    │      Port 51
 ```
-
-### Run the client
-
-`docker run --name=frontend --network=demo -d -p 5173:5173 mern-frontend`
-
-### Verify the client is running
-
-Open your browser and type `http://localhost:5173`
-
-### Run the mongodb container
-
-`docker run --network=demo --name mongodb -d -p 27017:27017 -v ~/opt/data:/data/db mongo:latest`
-
-### Build the server
-
-```sh
-cd mern/backend
-docker build -t mern-backend .
-```
-
-### Run the server
-
-`docker run --name=backend --network=demo -d -p 5050:5050 mern-backend`
-
-## Using Docker Compose
-
-`docker compose up -d`
-
