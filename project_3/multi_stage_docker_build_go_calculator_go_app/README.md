@@ -1,5 +1,109 @@
-# Multi Stage Docker Build
+# 🚀 Project 3 — Go Multi-Stage Docker Build
 
-The main purpose of choosing a golang based applciation to demostrate this example is golang is a statically-typed programming language that does not require a runtime in the traditional sense. Unlike dynamically-typed languages like Python, Ruby, and JavaScript, which rely on a runtime environment to execute their code, Go compiles directly to machine code, which can then be executed directly by the operating system.
+## 📌 Overview
 
-So the real advantage of multi stage docker build and distro less images can be understand with a drastic decrease in the Image size.
+This project demonstrates how to **containerize a Go calculator application using a Docker Multi-Stage Build**.
+
+The application is written in Go and accepts basic arithmetic operations such as:
+
+* Addition `+`
+* Subtraction `-`
+* Multiplication `*`
+* Division `/`
+
+The main objective of this project is to understand how Docker multi-stage builds can separate the **application build environment** from the **final runtime environment**.
+
+---
+
+## 📂 Project Structure
+
+```text
+project_3/
+│
+├── README.md
+│
+└── multi_stage_docker_build_go_calculator_go_app/
+    │
+    ├── calculator.go
+    ├── Dockerfile
+    └── README.md
+```
+
+---
+
+# 🧮 Go Calculator Application
+
+The application is a simple command-line calculator.
+
+Example:
+
+```text
+10 + 20
+```
+
+Output:
+
+```text
+Result: 30
+```
+
+Other examples:
+
+```text
+10 - 5
+```
+
+```text
+Result: 5
+```
+
+```text
+10 * 5
+```
+
+```text
+Result: 50
+```
+
+```text
+20 / 4
+```
+
+```text
+Result: 5
+```
+
+To exit the application:
+
+```text
+exit
+```
+
+> **Note:** The current application expects spaces between the numbers and operator.
+
+Correct:
+
+```text
+10 + 20
+```
+
+Not:
+
+```text
+10+20
+```
+
+---
+
+# 🐳 Docker Multi-Stage Build
+
+The project uses a Dockerfile containing **two stages**.
+
+```text
+┌───────────────────────────────────────┐
+│             BUILD STAGE               │
+│                                       │
+│              Ubuntu                   │
+│                 ↓                     │
+│          In
+```
